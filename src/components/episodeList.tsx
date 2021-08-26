@@ -21,27 +21,41 @@ interface IEpisode {
 }
 
 function EpisodeEntry(entry: IEpisode): JSX.Element {
+
+    const SeEp =  (season: number, number: number): string  => {
+        const output = []
+        if (season <10){
+            output.push(`0${season}`)
+        }
+        else {output.push(season.toString())} 
+
+        if (number <10){
+            output.push(`0${number}`)
+        }
+        else {output.push(number.toString())}  
+    
+    return output.join(',')
+    }
+
   return (
-    <section key={entry.id}>
-      <h2 className="title">
-        Episode Name:{entry.name}, Episode ID:{entry.id}
-      </h2>
-      <div className="body">
-        <img
-          className="part"
-          src={entry.image.medium}
-          alt="episode poster"
-          width="450"
-          height="300"
-        />
+    <body key={entry.id}>
+      <h2 className="title">Episode Name:{entry.name}</h2>
+      <section className="body">
         <div className="part">
-          <p>Season: {entry.season}</p>
-          <p>Episode: {entry.number}</p>
-          <p>Airdate: {entry.airdate}</p>
+          <img
+            src={entry.image.medium}
+            alt="episode poster"
+            width="450"
+            height="300"
+          />
+          <p>AirStamp: {entry.airstamp}</p>
+        </div>
+        <div className="part">
+          <p>{SeEp}</p>
+          {/* <p>Airdate: {entry.airdate}</p>
           <p>AirTime: {entry.airtime}</p>
           <p>Type: {entry.type}</p>
-          <p>AirStamp: {entry.airstamp}</p>
-          <p>Runtime: {entry.runtime}</p>
+          <p>Runtime: {entry.runtime}</p> */}
           <p>
             <strong>Summary: </strong>
             {entry.summary}
@@ -50,8 +64,8 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
             <a href={entry.url}>TV Maze Link</a>
           </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </body>
   );
 }
 

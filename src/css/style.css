@@ -14,3 +14,14 @@
   text-align: center;
   box-sizing: border-box solid;
 }
+
+.header {
+  padding: 30px 20px;
+  width: auto;
+  margin: 50px auto;
+  background-color: #4d0026;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  border: 3px double black;
+}
