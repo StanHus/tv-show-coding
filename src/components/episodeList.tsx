@@ -21,26 +21,28 @@ interface IEpisode {
 }
 
 function EpisodeEntry(entry: IEpisode): JSX.Element {
-  const SeEp = (season: number, number: number): string => {
+  function SeasonEp(season: number, number: number): string {
     const output = [];
     if (season < 10) {
-      output.push(`0${season}`);
+      output.push(`S0${season}`);
     } else {
-      output.push(season.toString());
+      output.push(`S${season.toString()}`);
     }
 
     if (number < 10) {
-      output.push(`0${number}`);
+      output.push(`E0${number}`);
     } else {
-      output.push(number.toString());
+      output.push(`E${number.toString()}`);
     }
 
-    return output.join(",");
-  };
+    return output.join("");
+  }
 
   return (
     <body key={entry.id}>
-      <h2 className="title">Episode Name:{entry.name}</h2>
+      <h2 className="title">
+        Episode Name:{entry.name} || {SeasonEp(entry.season, entry.number)}
+      </h2>
       <section className="body">
         <div className="part">
           <img
@@ -52,7 +54,6 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
           <p>AirStamp: {entry.airstamp}</p>
         </div>
         <div className="part">
-          <p>{SeEp}</p>
           {/* <p>Airdate: {entry.airdate}</p>
           <p>AirTime: {entry.airtime}</p>
           <p>Type: {entry.type}</p>
