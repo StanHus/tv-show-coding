@@ -21,21 +21,22 @@ interface IEpisode {
 }
 
 function EpisodeEntry(entry: IEpisode): JSX.Element {
-
-    const SeEp =  (season: number, number: number): string  => {
-        const output = []
-        if (season <10){
-            output.push(`0${season}`)
-        }
-        else {output.push(season.toString())} 
-
-        if (number <10){
-            output.push(`0${number}`)
-        }
-        else {output.push(number.toString())}  
-    
-    return output.join(',')
+  const SeEp = (season: number, number: number): string => {
+    const output = [];
+    if (season < 10) {
+      output.push(`0${season}`);
+    } else {
+      output.push(season.toString());
     }
+
+    if (number < 10) {
+      output.push(`0${number}`);
+    } else {
+      output.push(number.toString());
+    }
+
+    return output.join(",");
+  };
 
   return (
     <body key={entry.id}>
