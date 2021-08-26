@@ -1,0 +1,16 @@
+.body {
+  display: flex;
+  background-color: bisque;
+}
+
+.part {
+  margin: 20px;
+}
+
+.title {
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 5%;
+  text-align: center;
+  box-sizing: border-box solid;
+}
