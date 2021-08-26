@@ -1,6 +1,7 @@
 .body {
   display: flex;
   background-color: bisque;
+  max-width: 30%;
 }
 
 .part {

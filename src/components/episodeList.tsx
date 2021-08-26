@@ -38,10 +38,16 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
     return output.join("");
   }
 
+  function checkText(text: string): string {
+    text = text.replace("<p>", "");
+    text = text.replace("</p>", "");
+    return text;
+  }
+
   return (
     <body key={entry.id}>
       <h2 className="title">
-        Episode Name:{entry.name} || {SeasonEp(entry.season, entry.number)}
+        {entry.name} - {SeasonEp(entry.season, entry.number)}
       </h2>
       <section className="body">
         <div className="part">
@@ -52,15 +58,13 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
             height="300"
           />
           <p>AirStamp: {entry.airstamp}</p>
-        </div>
-        <div className="part">
           {/* <p>Airdate: {entry.airdate}</p>
           <p>AirTime: {entry.airtime}</p>
           <p>Type: {entry.type}</p>
           <p>Runtime: {entry.runtime}</p> */}
           <p>
             <strong>Summary: </strong>
-            {entry.summary}
+            {checkText(entry.summary)}
           </p>
           <p>
             <a href={entry.url}>TV Maze Link</a>
