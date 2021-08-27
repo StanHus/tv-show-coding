@@ -80,7 +80,7 @@ export function EpisodeList(): JSX.Element {
       <input
         className="search"
         type="text"
-        placeholder="Search anything"
+        placeholder="Filter the names and summaries by keywords"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
