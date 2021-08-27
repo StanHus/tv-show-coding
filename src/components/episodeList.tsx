@@ -74,26 +74,32 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
 }
 
 export function EpisodeList(): JSX.Element {
+  const [search, setSearch] = useState("");
   return (
     <>
-      <div>{episodes.map(EpisodeEntry)}</div>
-    </>
-  );
-}
-
-export function Search(entry: IEpisode): JSX.Element {
-  const [search, setSearch] = useState("");
-
-  return (
-    <div>
-      <h3 className="title">CONTACTS LIST</h3>
       <input
+        className="search"
         type="text"
-        placeholder="Search name"
+        placeholder="Search anything"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {/* <List contacts={episodes} /> */}
-    </div>
+      <div>
+        {episodes
+          .filter((val) => {
+            let ans;
+            if (search === "") {
+              ans = val;
+            } else if (
+              val.name.toLowerCase().includes(search.toLowerCase()) ||
+              val.summary.toLowerCase().includes(search.toLowerCase())
+            ) {
+              ans = val;
+            }
+            return ans
+          })
+          .map(EpisodeEntry)}
+      </div>
+    </>
   );
 }
