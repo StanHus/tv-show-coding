@@ -1,5 +1,6 @@
 import episodes from "../episodes.json";
 import "../css/style.css";
+import { useState } from "react";
 
 interface IEpisode {
   id: number;
@@ -45,20 +46,17 @@ function EpisodeEntry(entry: IEpisode): JSX.Element {
   }
 
   return (
-    <body key={entry.id}>
-      <h2 className="title">
-        {entry.name} - {SeasonEp(entry.season, entry.number)}
-      </h2>
-      <section className="body">
+    <body className="body" key={entry.id}>
+      <section className="elements">
+        <div className="title">
+          <h2>
+            {entry.name} - {SeasonEp(entry.season, entry.number)}
+          </h2>
+        </div>
+        <img className="image" src={entry.image.medium} alt="episode poster" />
         <div className="part">
-          <img
-            src={entry.image.medium}
-            alt="episode poster"
-            width="450"
-            height="300"
-          />
-          <p>AirStamp: {entry.airstamp}</p>
-          {/* <p>Airdate: {entry.airdate}</p>
+          {/*<p>AirStamp: {entry.airstamp}</p>
+           <p>Airdate: {entry.airdate}</p>
           <p>AirTime: {entry.airtime}</p>
           <p>Type: {entry.type}</p>
           <p>Runtime: {entry.runtime}</p> */}
@@ -80,5 +78,22 @@ export function EpisodeList(): JSX.Element {
     <>
       <div>{episodes.map(EpisodeEntry)}</div>
     </>
+  );
+}
+
+export function Search(entry: IEpisode): JSX.Element {
+  const [search, setSearch] = useState("");
+
+  return (
+    <div>
+      <h3 className="title">CONTACTS LIST</h3>
+      <input
+        type="text"
+        placeholder="Search name"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {/* <List contacts={episodes} /> */}
+    </div>
   );
 }

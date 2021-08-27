@@ -1,19 +1,31 @@
-.body {
+.elements {
+  background-color: rgb(202, 202, 202);
   display: flex;
-  background-color: bisque;
-  max-width: 30%;
+}
+
+.body {
+  flex-wrap: nowrap;
+}
+
+.image {
+  width: 30%;
+  height: auto;
+  text-align: center;
 }
 
 .part {
   margin: 20px;
+  text-align: center;
+  float: right;
+  width: 45%;
 }
 
 .title {
-  border: 1px solid black;
-  padding: 10px;
-  margin-top: 5%;
+  /* border: 1px solid black; */
   text-align: center;
   box-sizing: border-box solid;
+  float: left;
+  width: 20%;
 }
 
 .header {
