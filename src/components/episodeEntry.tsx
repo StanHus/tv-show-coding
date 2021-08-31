@@ -18,7 +18,6 @@ interface IEpisode {
 }
 
 export default function EpisodeEntry(entry: IEpisode): JSX.Element {
-
   function SeasonEp(season: number, number: number): string {
     const output = [];
     if (season < 10) {
@@ -35,22 +34,20 @@ export default function EpisodeEntry(entry: IEpisode): JSX.Element {
 
     return output.join("");
   }
-  
+
   function checkText(text: string): string {
     text = text.replace("<p>", "");
     text = text.replace("</p>", "");
     return text;
   }
 
-    const epTitle = `${entry.name} - ${SeasonEp(entry.season, entry.number)}`
+  const epTitle = `${entry.name} - ${SeasonEp(entry.season, entry.number)}`;
 
   return (
     <body className="body" key={entry.id}>
       <section className="elements">
         <div className="title">
-          <h2>
-            {epTitle}
-          </h2>
+          <h2>{epTitle}</h2>
         </div>
         <img className="image" src={entry.image.medium} alt="episode poster" />
         <div className="part">
@@ -71,4 +68,3 @@ export default function EpisodeEntry(entry: IEpisode): JSX.Element {
     </body>
   );
 }
-
