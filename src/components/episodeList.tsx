@@ -7,6 +7,37 @@ export function EpisodeList(): JSX.Element {
   const [search, setSearch] = useState("");
   const [episode, setEpisode] = useState("all");
 
+  // const [import, setImport] = useState<fetchedEpisode>();
+  // interface fetchedEpisode {
+  //   id: number;
+  //   url: string;
+  //   name: string;
+  //   season: number;
+  //   number: number;
+  //   type: string;
+  //   airdate: string;
+  //   airtime: string;
+  //   airstamp: string;
+  //   runtime: number;
+  //   image: {
+  //     medium: string;
+  //     original: string;
+  //   };
+  //   summary: string;
+  //   _links: { self: { href: string } };
+  // }
+
+  // const getMeEpisode = async () => {
+  //   const response = await fetch(
+  //     "https://api.tvmaze.com/shows/82/episodes"
+  //   );
+  //   const jsonBody: fetchedEpisode = await response.json();
+  //   setImport(jsonBody)
+  //   let arr = []
+  //     arr.push(import)
+
+  // }
+
   return (
     <>
       <div>
