@@ -14,12 +14,29 @@
 }
 
 .search {
+  display: flex;
+  border: 2px solid rgb(122, 122, 122);
+  margin-bottom: 20px;
+}
+
+.searchelement{
   text-align: center;
-  margin-left: 20%;
-  width: 50%;
-  font-size: large;
-  border: 5px double black;
-  padding: 15px;
+  margin: auto;
+  padding: 10px;
+  width: 42.5%;
+}
+
+.dropdown {
+  display: flex;
+  border: 2px solid rgb(122, 122, 122);
+  margin-bottom: 20px;
+}
+
+.dropdownelement {
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+  width: 45%;
 }
 
 .part {
