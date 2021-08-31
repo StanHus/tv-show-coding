@@ -1,7 +1,7 @@
 import episodes from "../episodes.json";
 import "../css/style.css";
 import { useState } from "react";
-import EpisodeEntry from "./episodeEntry";
+import { EpisodeEntry, SeasonEp } from "./episodeEntry";
 
 export function EpisodeList(): JSX.Element {
   const [search, setSearch] = useState("");
@@ -24,7 +24,7 @@ export function EpisodeList(): JSX.Element {
             {episodes.map((val) => {
               return (
                 <option key={val.id} value={val.name}>
-                  {val.name}
+                  {val.name} - {SeasonEp(val.season, val.number)}
                 </option>
               );
             })}
