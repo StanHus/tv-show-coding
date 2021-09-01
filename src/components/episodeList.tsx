@@ -1,46 +1,42 @@
-//import episodes from "../episodes.json";
+
 import "../css/style.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { EpisodeEntry, SeasonEp } from "./episodeEntry";
 
 export function EpisodeList(): JSX.Element {
-
   interface fetchedEpisode {
-    key?: number;
-    id?: number;
-    url?: string;
+    id: number;
+    url: string;
     name: string;
     season: number;
     number: number;
-    type?: string;
-    airdate?: string;
-    airtime?: string;
-    airstamp?: string;
-    runtime?: number;
-    image?: {
-      medium?: string;
-      original?: string;
+    type: string;
+    airdate: string;
+    airtime: string;
+    airstamp: string;
+    runtime: number;
+    image: {
+      medium: string;
+      original: string;
     };
     summary: string;
-    _links?: { self: { href: string } };
+    _links: { self: { href: string } };
   }
 
   const [search, setSearch] = useState("");
   const [episode, setEpisode] = useState("all");
-  const [list, setList = useState<fetchedEpisode[]>([]);
+
+  const [list, setList] = useState<fetchedEpisode[]>([]);
 
   useEffect(() => {
-  const getMeEpisode = async () => {
-    const response = await fetch(
-      "https://api.tvmaze.com/shows/82/episodes"
-    );
-    const jsonBody: fetchedEpisode[] = await response.json();
-    setList((list) => [...list, ...jsonBody])
+    const getMeEpisode = async () => {
+      const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+      const jsonBody: fetchedEpisode[] = await response.json();
+      setList((list) => [...list, ...jsonBody]);
     };
-    getMeEpisode()
-  }, [])
-
+    getMeEpisode();
+  }, []);
 
   return (
     <>
