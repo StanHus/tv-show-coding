@@ -1,42 +1,46 @@
-import episodes from "../episodes.json";
+//import episodes from "../episodes.json";
 import "../css/style.css";
+import { useEffect } from "react";
 import { useState } from "react";
 import { EpisodeEntry, SeasonEp } from "./episodeEntry";
 
 export function EpisodeList(): JSX.Element {
+
+  interface fetchedEpisode {
+    key?: number;
+    id?: number;
+    url?: string;
+    name: string;
+    season: number;
+    number: number;
+    type?: string;
+    airdate?: string;
+    airtime?: string;
+    airstamp?: string;
+    runtime?: number;
+    image?: {
+      medium?: string;
+      original?: string;
+    };
+    summary: string;
+    _links?: { self: { href: string } };
+  }
+
   const [search, setSearch] = useState("");
   const [episode, setEpisode] = useState("all");
+  const [list, setList = useState<fetchedEpisode[]>([]);
 
-  // const [import, setImport] = useState<fetchedEpisode>();
-  // interface fetchedEpisode {
-  //   id: number;
-  //   url: string;
-  //   name: string;
-  //   season: number;
-  //   number: number;
-  //   type: string;
-  //   airdate: string;
-  //   airtime: string;
-  //   airstamp: string;
-  //   runtime: number;
-  //   image: {
-  //     medium: string;
-  //     original: string;
-  //   };
-  //   summary: string;
-  //   _links: { self: { href: string } };
-  // }
+  useEffect(() => {
+  const getMeEpisode = async () => {
+    const response = await fetch(
+      "https://api.tvmaze.com/shows/82/episodes"
+    );
+    const jsonBody: fetchedEpisode[] = await response.json();
+    setList((list) => [...list, ...jsonBody])
+    };
+    getMeEpisode()
+  }, [])
 
-  // const getMeEpisode = async () => {
-  //   const response = await fetch(
-  //     "https://api.tvmaze.com/shows/82/episodes"
-  //   );
-  //   const jsonBody: fetchedEpisode = await response.json();
-  //   setImport(jsonBody)
-  //   let arr = []
-  //     arr.push(import)
-
-  // }
 
   return (
     <>
@@ -52,7 +56,7 @@ export function EpisodeList(): JSX.Element {
             }}
           >
             <option value="all">All</option>
-            {episodes.map((val) => {
+            {list.map((val: fetchedEpisode) => {
               return (
                 <option key={val.id} value={val.name}>
                   {val.name} - {SeasonEp(val.season, val.number)}
@@ -72,8 +76,8 @@ export function EpisodeList(): JSX.Element {
           />
         </section>
         <div>
-          {episodes
-            .filter((val) => {
+          {list
+            .filter((val: fetchedEpisode) => {
               let ans;
               if (episode === "all") {
                 ans = val;
@@ -82,7 +86,7 @@ export function EpisodeList(): JSX.Element {
               }
               return ans;
             })
-            .filter((val) => {
+            .filter((val: fetchedEpisode) => {
               let ans;
               if (search === "") {
                 ans = val;
